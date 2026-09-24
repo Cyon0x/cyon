@@ -1,11 +1,66 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { irlStops } from "@/data/irl";
+import { irlLeadPhoto, irlStops, type IrlPhoto } from "@/data/irl";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRight, ArrowDown } from "@/components/ui/Icons";
 import { cn } from "@/lib/utils";
+
+function StopPhoto({ photo, className, sizes }: { photo: IrlPhoto; className?: string; sizes: string }) {
+  return (
+    <span className={cn("relative block overflow-hidden border border-line bg-raise", className)}>
+      <Image
+        src={photo.src}
+        alt={photo.alt}
+        fill
+        sizes={sizes}
+        quality={82}
+        className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+      />
+    </span>
+  );
+}
+
+const FULL = "(max-width: 640px) 78vw, 380px";
+const HALF = "(max-width: 640px) 39vw, 190px";
+
+/**
+ * A lone photo fills the card, a pair sits side by side, and three or more get
+ * a lead frame with the rest paired underneath — so no column is ever left
+ * empty next to a single photo.
+ */
+function StopPhotos({ photos }: { photos: IrlPhoto[] }) {
+  if (photos.length === 0) return null;
+
+  if (photos.length === 1) {
+    return (
+      <div className="mt-5">
+        <StopPhoto photo={photos[0]} className="aspect-[4/3] w-full" sizes={FULL} />
+      </div>
+    );
+  }
+
+  const leading = photos.length === 2 ? null : photos[0];
+  const paired = photos.length === 2 ? photos : photos.slice(1);
+
+  return (
+    <div className="mt-5 space-y-1.5">
+      {leading && <StopPhoto photo={leading} className="aspect-[4/3] w-full" sizes={FULL} />}
+      <div className={cn("grid gap-1.5", paired.length > 1 && "grid-cols-2")}>
+        {paired.map((photo) => (
+          <StopPhoto
+            key={photo.src}
+            photo={photo}
+            className="aspect-[4/3]"
+            sizes={paired.length > 1 ? HALF : FULL}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function IrlSection() {
   const trackRef = useRef<HTMLUListElement>(null);
@@ -44,6 +99,27 @@ export function IrlSection() {
           }
           lead="Benin City, mostly. Rooms with real people, first wallets, first questions, and the kind of conversation a thread cannot have."
         />
+
+        <Reveal delay={40}>
+          <figure className="mt-10 border border-line">
+            <div className="relative aspect-[3/2] w-full overflow-hidden bg-raise sm:aspect-[21/9]">
+              <Image
+                src={irlLeadPhoto.src}
+                alt={irlLeadPhoto.alt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 1200px"
+                quality={82}
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="flex items-center justify-between gap-4 border-t border-line px-4 py-3">
+              <span className="label !text-[9px]">THE ROOM / BENIN CITY</span>
+              <span className="label hidden !text-[9px] sm:inline">
+                FIRST WALLETS, FIRST QUESTIONS
+              </span>
+            </figcaption>
+          </figure>
+        </Reveal>
 
         <Reveal delay={60}>
           <div className="mt-12 flex items-center justify-between gap-6 border-b border-line pb-4">
@@ -84,7 +160,7 @@ export function IrlSection() {
             <li
               key={stop.code}
               className={cn(
-                "group relative w-[82vw] shrink-0 snap-start border-r border-t border-line px-6 pb-8 pt-10 sm:w-[380px] lg:w-[420px]",
+                "group relative flex w-[82vw] shrink-0 snap-start flex-col border-r border-t border-line px-6 pb-8 pt-10 sm:w-[380px] lg:w-[420px]",
                 i === 0 && "border-l",
                 open && "bg-panel",
               )}
@@ -107,6 +183,8 @@ export function IrlSection() {
                 <span className="label !text-[9px]">{stop.code}</span>
                 <span className="label !text-[9px]">{stop.year}</span>
               </div>
+
+              <StopPhotos photos={stop.photos} />
 
               <h3
                 className={cn(
@@ -133,7 +211,7 @@ export function IrlSection() {
 
               <p className="mt-6 max-w-[46ch] text-[0.93rem] text-ink-2">{stop.note}</p>
 
-              <div className="mt-7 flex items-center gap-3">
+              <div className="mt-auto flex items-center gap-3 pt-7">
                 <span className="label !text-[9px]">{stop.role}</span>
                 <span className="h-px flex-1 bg-line" />
                 <span className="label !text-[9px]">
