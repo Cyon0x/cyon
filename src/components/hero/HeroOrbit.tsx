@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
 import { identity } from "@/data/site";
 import { usePointerParallax } from "@/lib/hooks";
-import { cn } from "@/lib/utils";
+import { cn, svgCoord } from "@/lib/utils";
 import { PlusIcon } from "@/components/ui/Icons";
 
 /** Fixed callouts. Hand-placed so the composition stays deliberate. */
@@ -118,10 +118,10 @@ export function HeroOrbit() {
 
             {ringNodes.map((angle, i) => {
               const rad = (angle * Math.PI) / 180;
-              const x = 100 + Math.cos(rad) * 78;
-              const y = 100 + Math.sin(rad) * 78;
-              const inner = 100 + Math.cos(rad) * 63;
-              const innerY = 100 + Math.sin(rad) * 63;
+              const x = svgCoord(100 + Math.cos(rad) * 78);
+              const y = svgCoord(100 + Math.sin(rad) * 78);
+              const inner = svgCoord(100 + Math.cos(rad) * 63);
+              const innerY = svgCoord(100 + Math.sin(rad) * 63);
               return (
                 <g key={angle}>
                   <line

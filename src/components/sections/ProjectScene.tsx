@@ -29,7 +29,7 @@ export function ProjectScene({ project, priority = false }: { project: Project; 
         <article className="mt-20 lg:mt-28">
           {sceneLabel(project.index, project.name)}
           <Reveal>
-            <BrowserFrame project={project} priority={priority} className="lg:-mr-8 xl:-mr-16" />
+            <BrowserFrame project={project} priority={priority} className="lg:-mr-8" />
           </Reveal>
 
           <div className="mt-9 grid grid-cols-12 gap-y-8 lg:gap-x-10">
@@ -91,7 +91,7 @@ export function ProjectScene({ project, priority = false }: { project: Project; 
             </Reveal>
 
             <Reveal delay={80} className="col-span-12 lg:col-span-8">
-              <BrowserFrame project={project} priority={priority} className="lg:-mr-8 xl:-mr-16" />
+              <BrowserFrame project={project} priority={priority} className="lg:-mr-8" />
             </Reveal>
           </div>
         </article>
@@ -106,7 +106,7 @@ export function ProjectScene({ project, priority = false }: { project: Project; 
           {sceneLabel(project.index, project.name)}
           <div className="grid grid-cols-12">
             <Reveal className="col-span-12 lg:col-span-9 lg:col-start-4">
-              <BrowserFrame project={project} priority={priority} className="lg:-mr-8 xl:-mr-16" />
+              <BrowserFrame project={project} priority={priority} className="lg:-mr-8" />
             </Reveal>
           </div>
 

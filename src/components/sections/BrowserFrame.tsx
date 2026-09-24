@@ -23,15 +23,6 @@ export function BrowserFrame({ project, className, priority = false }: BrowserFr
       aria-label={`${project.name} — open the live product`}
       className={cn("group relative block", className)}
     >
-      {/* accent glow, only on hover */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -inset-3 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(70% 60% at 50% 100%, color-mix(in srgb, ${project.accent} 16%, transparent), transparent 70%)`,
-        }}
-      />
-
       <span
         className="relative block border border-line bg-panel transition-transform duration-500 will-change-transform group-hover:-translate-y-1"
         style={{ boxShadow: "0 30px 60px -50px rgba(0,0,0,0.9)" }}

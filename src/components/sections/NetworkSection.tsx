@@ -5,7 +5,7 @@ import { categories, ecosystemNodes, type CategoryId, type EcosystemNode } from 
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { useMediaQuery } from "@/lib/hooks";
-import { cn } from "@/lib/utils";
+import { cn, svgCoord } from "@/lib/utils";
 import { ArrowUpRight } from "@/components/ui/Icons";
 
 const W = 720;
@@ -28,8 +28,8 @@ function place(nodes: EcosystemNode[]): Placed[] {
       return {
         ...node,
         angle,
-        x: CX + Math.cos(rad) * radius,
-        y: CY + Math.sin(rad) * radius,
+        x: svgCoord(CX + Math.cos(rad) * radius),
+        y: svgCoord(CY + Math.sin(rad) * radius),
       };
     });
 

@@ -97,7 +97,7 @@ export function IrlSection() {
               <span className="serif italic"> offline</span>
             </>
           }
-          lead="Benin City, mostly. Rooms with real people, first wallets, first questions, and the kind of conversation a thread cannot have."
+          lead="I have hosted, planned and organised IRL events for different Web3 projects and ecosystems. Benin City, mostly: rooms with real people, first wallets, first questions, and the kind of conversation a thread cannot have."
         />
 
         <Reveal delay={40}>
