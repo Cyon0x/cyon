@@ -19,6 +19,61 @@ export const irlLeadPhoto: IrlPhoto = {
   alt: "Group photo of Benin City builders outside after a community meetup.",
 };
 
+export type IrlEventPhoto = IrlPhoto & {
+  /** Mono caption pinned under the frame in the archive band. */
+  tag: string;
+  /** Frame shape — the band is composed, not a uniform grid of tiles. */
+  frame: "lead" | "wide" | "tall";
+};
+
+/** One line per verb, so the section states the job plainly next to the proof. */
+export const irlRoles: { verb: string; note: string }[] = [
+  {
+    verb: "HOSTED",
+    note: "On the mic and on the day: the room, the run of show, the questions that come after.",
+  },
+  {
+    verb: "PLANNED",
+    note: "Concept, format, venue and the guest list, well before anyone walks in.",
+  },
+  {
+    verb: "ORGANISED",
+    note: "Partners, logistics, first wallets and the follow-up once everyone has gone home.",
+  },
+];
+
+/**
+ * Events beyond the Benin City route: other rooms, other ecosystems, same job.
+ * Order is deliberate — leading wide frame, then a wide/tall/tall row that
+ * lands on a shared baseline.
+ */
+export const irlEventArchive: IrlEventPhoto[] = [
+  {
+    src: "/irl/08-community-day.webp",
+    frame: "lead",
+    tag: "COMMUNITY DAY / GROUP SHOT",
+    alt: "A large group of attendees posing together in front of a black sponsor wall covered in Web3 partner logos at an in-person community event.",
+  },
+  {
+    src: "/irl/10-on-the-mic.webp",
+    frame: "wide",
+    tag: "ON THE MIC / FULL HOUSE",
+    alt: "A host holding a phone while addressing a packed room of seated attendees at a community meetup.",
+  },
+  {
+    src: "/irl/09-organisers.webp",
+    frame: "tall",
+    tag: "ORGANISERS / VENUE WALL",
+    alt: "Five organisers standing arm in arm in front of a large portrait mural painted on the venue wall.",
+  },
+  {
+    src: "/irl/11-architects-meetup.webp",
+    frame: "tall",
+    tag: "PANEL / ARCHITECTS MEETUP",
+    alt: "Two hosts seated on high stools either side of a speaker, beneath an {ARCHITECTS} Meetup banner during a community panel.",
+  },
+];
+
 export const irlStops: IrlStop[] = [
   {
     code: "IRL / 001",

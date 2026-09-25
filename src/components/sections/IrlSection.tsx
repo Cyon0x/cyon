@@ -2,7 +2,14 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { irlLeadPhoto, irlStops, type IrlPhoto } from "@/data/irl";
+import {
+  irlEventArchive,
+  irlLeadPhoto,
+  irlRoles,
+  irlStops,
+  type IrlEventPhoto,
+  type IrlPhoto,
+} from "@/data/irl";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRight, ArrowDown } from "@/components/ui/Icons";
@@ -25,6 +32,82 @@ function StopPhoto({ photo, className, sizes }: { photo: IrlPhoto; className?: s
 
 const FULL = "(max-width: 640px) 78vw, 380px";
 const HALF = "(max-width: 640px) 39vw, 190px";
+
+/** Ecosystems I have already run a room for, pulled from the route stops. */
+const routeEcosystems = irlStops
+  .filter((stop) => stop.photos.length > 0)
+  .map((stop) => stop.ecosystem)
+  .join(" / ");
+
+/**
+ * The archive band keeps the source aspect of the wide frames so nobody gets
+ * cropped out of a group shot, and lets the two portraits sit tall beside them.
+ */
+const ARCHIVE_FRAME = {
+  lead: {
+    wrapper: "col-span-12 lg:col-span-7",
+    aspect: "aspect-[3/2]",
+    sizes: "(max-width: 1024px) 100vw, 55vw",
+  },
+  wide: {
+    wrapper: "col-span-12 lg:col-span-6",
+    aspect: "aspect-[3/2]",
+    sizes: "(max-width: 1024px) 100vw, 45vw",
+  },
+  tall: {
+    wrapper: "col-span-6 self-end lg:col-span-3",
+    aspect: "aspect-[4/5]",
+    sizes: "(max-width: 1024px) 50vw, 23vw",
+  },
+} as const;
+
+function ArchiveFrame({ photo, index }: { photo: IrlEventPhoto; index: number }) {
+  const frame = ARCHIVE_FRAME[photo.frame];
+
+  return (
+    <Reveal
+      as="figure"
+      delay={index * 60}
+      className={cn("group relative m-0 flex flex-col", frame.wrapper)}
+    >
+      <span
+        className={cn(
+          "relative block w-full overflow-hidden border border-line bg-raise",
+          frame.aspect,
+        )}
+      >
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          fill
+          sizes={frame.sizes}
+          quality={82}
+          className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+        />
+      </span>
+      <figcaption className="label mt-2.5 !text-[9px]">{photo.tag}</figcaption>
+    </Reveal>
+  );
+}
+
+function ArchiveRoles() {
+  return (
+    <div className="col-span-12 flex flex-col justify-between gap-6 border border-line bg-panel px-5 py-6 lg:col-span-5 lg:px-7">
+      <span className="label !text-[9px]">THE JOB / IN PERSON</span>
+
+      <ul>
+        {irlRoles.map((role) => (
+          <li key={role.verb} className="border-t border-line py-4 first:border-t-0 first:pt-0">
+            <p className="label label-ink !text-[10px] !tracking-[0.24em]">{role.verb}</p>
+            <p className="mt-2 max-w-[38ch] text-[0.9rem] text-ink-3">{role.note}</p>
+          </li>
+        ))}
+      </ul>
+
+      <p className="label !text-[9px]">ECOSYSTEMS SO FAR: {routeEcosystems}</p>
+    </div>
+  );
+}
 
 /**
  * A lone photo fills the card, a pair sits side by side, and three or more get
@@ -120,6 +203,19 @@ export function IrlSection() {
             </figcaption>
           </figure>
         </Reveal>
+
+        <div className="mt-14 flex items-center justify-between gap-6 border-b border-line pb-4">
+          <span className="label">EVENT ARCHIVE / {String(irlEventArchive.length).padStart(2, "0")} FRAMES</span>
+          <span className="label hidden sm:inline">ACROSS ECOSYSTEMS</span>
+        </div>
+
+        <div className="mt-5 grid grid-cols-12 gap-x-3 gap-y-5 lg:gap-x-4">
+          <ArchiveFrame photo={irlEventArchive[0]} index={0} />
+          <ArchiveRoles />
+          {irlEventArchive.slice(1).map((photo, i) => (
+            <ArchiveFrame key={photo.src} photo={photo} index={i + 1} />
+          ))}
+        </div>
 
         <Reveal delay={60}>
           <div className="mt-12 flex items-center justify-between gap-6 border-b border-line pb-4">
