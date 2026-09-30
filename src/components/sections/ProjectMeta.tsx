@@ -1,4 +1,4 @@
-import type { Project } from "@/data/projects";
+import { PROJECT_COUNT, type Project } from "@/data/projects";
 import { ArrowUpRight, GitHubIcon } from "@/components/ui/Icons";
 import { cn } from "@/lib/utils";
 
@@ -11,7 +11,7 @@ export function ProjectIndex({ project, className }: { project: Project; classNa
       >
         {project.index}
       </span>
-      <span className="label">/ 06</span>
+      <span className="label">/ {PROJECT_COUNT}</span>
     </span>
   );
 }
@@ -50,6 +50,33 @@ export function ProjectNote({ project }: { project: Project }) {
     <p className="mono border-l border-signal/50 pl-4 text-[11px] leading-relaxed text-ink-3">
       {project.note}
     </p>
+  );
+}
+
+/**
+ * Problem → role → result, in the same order every time.
+ * "What I built" and "tech" stay in ProjectBuilt, so nothing is said twice.
+ */
+export function ProjectLedger({ project, className }: { project: Project; className?: string }) {
+  const rows: { k: string; v: string; accent?: boolean }[] = [];
+  if (project.problem) rows.push({ k: "PROBLEM", v: project.problem });
+  rows.push({ k: "MY ROLE", v: project.role });
+  if (project.result) rows.push({ k: "RESULT", v: project.result, accent: true });
+
+  return (
+    <dl className={cn("border-t border-line", className)}>
+      {rows.map((row) => (
+        <div
+          key={row.k}
+          className="grid grid-cols-[76px_1fr] gap-x-4 border-b border-line py-2.5 last:border-b-0"
+        >
+          <dt className="label !text-[9px] pt-[3px]">{row.k}</dt>
+          <dd className={cn("text-[0.92rem]", row.accent ? "text-signal" : "text-ink-2")}>
+            {row.v}
+          </dd>
+        </div>
+      ))}
+    </dl>
   );
 }
 

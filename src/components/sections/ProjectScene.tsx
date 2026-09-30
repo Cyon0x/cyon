@@ -1,8 +1,9 @@
-import type { Project } from "@/data/projects";
+import { PROJECT_COUNT, type Project } from "@/data/projects";
 import { BrowserFrame } from "./BrowserFrame";
 import {
   ProjectBuilt,
   ProjectIndex,
+  ProjectLedger,
   ProjectLinks,
   ProjectNote,
   ProjectStatusLine,
@@ -48,6 +49,7 @@ export function ProjectScene({ project, priority = false }: { project: Project; 
                 {project.summary}
               </p>
               <p className="mt-4 text-ink-2">{project.detail}</p>
+              <ProjectLedger project={project} className="mt-7" />
             </Reveal>
 
             <Reveal delay={110} className="col-span-12 flex flex-col gap-6 lg:col-span-3">
@@ -76,6 +78,7 @@ export function ProjectScene({ project, priority = false }: { project: Project; 
                 {project.summary}
               </p>
               <p className="mt-5 text-ink-2">{project.detail}</p>
+              <ProjectLedger project={project} className="mt-7" />
               <div className="mt-7">
                 <ProjectNote project={project} />
               </div>
@@ -127,6 +130,7 @@ export function ProjectScene({ project, priority = false }: { project: Project; 
 
             <Reveal delay={80} className="col-span-12 flex flex-col gap-6 lg:col-span-5 lg:col-start-8 lg:pt-6">
               <ProjectStatusLine project={project} />
+              <ProjectLedger project={project} />
               <ProjectNote project={project} />
               <ProjectBuilt project={project} />
             </Reveal>
@@ -156,6 +160,9 @@ export function ProjectScene({ project, priority = false }: { project: Project; 
                 {project.summary}
               </p>
               <p className="mt-4 text-ink-2">{project.detail}</p>
+              <div className="mt-7">
+                <ProjectLedger project={project} />
+              </div>
               <div className="mt-7">
                 <ProjectNote project={project} />
               </div>
@@ -193,7 +200,7 @@ export function CompactProject({ project }: { project: Project }) {
       <div className="flex flex-1 flex-col px-5 pb-6">
         <div className="flex items-baseline justify-between gap-4">
           <h3 className="text-[length:var(--text-h3)] tracking-[-0.02em]">{project.name}</h3>
-          <span className="mono text-[10px] text-ink-3">{project.index} / 06</span>
+          <span className="mono text-[10px] text-ink-3">{project.index} / {PROJECT_COUNT}</span>
         </div>
         <p className="label mt-3">{project.role} · {project.chain}</p>
         <p className="mt-4 text-[0.95rem] text-ink-2">{project.summary}</p>

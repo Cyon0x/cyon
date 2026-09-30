@@ -1,4 +1,4 @@
-import { featuredProjects, supportingProjects } from "@/data/projects";
+import { PROJECT_COUNT, featuredProjects, supportingProjects } from "@/data/projects";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { ProjectScene, CompactProject } from "./ProjectScene";
@@ -16,12 +16,12 @@ export function BuildsSection() {
               <span className="serif italic"> built</span>
             </>
           }
-          lead="Six things that are live right now. Every preview below is a real screenshot of the deployed product, and every link opens it."
+          lead="Seven things that are live right now. Every preview below is a real screenshot of the deployed product, and every link opens it."
         />
 
         <Reveal delay={60}>
           <ul className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-y border-line py-3">
-            <li className="label !text-ink">LIVE PRODUCTS · 06</li>
+            <li className="label !text-ink">LIVE PRODUCTS · {PROJECT_COUNT}</li>
             <li className="label">CHAINS · ARC / REDBELLY / RBNT</li>
             <li className="label hidden sm:block">STACK · NEXT.JS · TYPESCRIPT · EVM</li>
           </ul>
