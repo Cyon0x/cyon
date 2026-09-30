@@ -1,9 +1,10 @@
-import { identity, links } from "@/data/site";
+import { links } from "@/data/site";
 import { ticker } from "@/data/code";
 import { Marquee } from "@/components/ui/Marquee";
 import { Reveal } from "@/components/ui/Reveal";
 import { TerminalTrigger } from "@/components/terminal/TerminalTrigger";
 import { ArrowDown, ArrowRight } from "@/components/ui/Icons";
+import { Wordmark } from "@/components/ui/Wordmark";
 import { HeroOrbit } from "./HeroOrbit";
 
 export function Hero() {
@@ -11,11 +12,10 @@ export function Hero() {
     <section id="top" className="relative flex min-h-[100svh] flex-col pt-[68px]">
       <div className="shell relative z-10 flex flex-1 flex-col justify-center gap-8 py-[clamp(2rem,6vh,4.5rem)]">
         {/* eyebrow band */}
-        <Reveal className="flex items-center gap-4 border-b border-line pb-3">
-          <span className="label !text-ink">{identity.name}</span>
-          <span className="label hidden sm:inline">{identity.legalName}</span>
-          <span className="hair flex-1" />
-          <span className="label">SYS / 01 — WORKSPACE</span>
+        <Reveal className="flex items-end gap-4 border-b border-line pb-4">
+          <Wordmark id="masthead-name" size="hero" />
+          <span className="hair mb-2.5 hidden flex-1 sm:block" />
+          <span className="label mb-2 hidden sm:inline">SYS / 01 — WORKSPACE</span>
         </Reveal>
 
         <div className="grid grid-cols-12 items-center gap-y-14 lg:gap-x-8">

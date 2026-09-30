@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { identity, nav } from "@/data/site";
-import { Mark } from "@/components/ui/Mark";
+import { Wordmark } from "@/components/ui/Wordmark";
 import { ThemeToggle } from "./ThemeToggle";
 import { CloseIcon, MenuIcon, TerminalIcon } from "@/components/ui/Icons";
 import { cn } from "@/lib/utils";
@@ -41,9 +41,7 @@ export function SiteNav() {
       >
         <nav className="shell flex h-[68px] items-center justify-between gap-6" aria-label="Primary">
           <a href="#top" className="group flex items-center gap-3" data-cursor="TOP">
-            <Mark className="text-ink transition-transform duration-500 group-hover:rotate-[8deg]" />
-            <span className="mono text-[15px] font-semibold tracking-[0.22em]">CYON</span>
-            <span className="label hidden !text-[9px] sm:inline">{identity.legalName}</span>
+            <Wordmark className="transition-transform duration-500 group-hover:-translate-y-px" />
           </a>
 
           <ul className="hidden items-center gap-7 lg:flex">

@@ -1,6 +1,6 @@
 import { identity, links } from "@/data/site";
 import { sections } from "@/data/sections";
-import { Mark } from "@/components/ui/Mark";
+import { Wordmark } from "@/components/ui/Wordmark";
 import { LocalClock } from "@/components/ui/LocalClock";
 import {
   ArrowUpRight,
@@ -24,8 +24,10 @@ export function SiteFooter() {
         <div className="grid grid-cols-12 gap-y-12 border-b border-line pb-12 lg:gap-x-10">
           <div className="col-span-12 lg:col-span-5">
             <a href="#top" className="group inline-flex items-center gap-3">
-              <Mark className="text-ink" />
-              <span className="mono text-[15px] font-semibold tracking-[0.22em]">CYON</span>
+              <Wordmark
+                legalClassName="!text-ink-3"
+                className="transition-transform duration-500 group-hover:-translate-y-px"
+              />
             </a>
             <p className="serif mt-7 text-[length:var(--text-h2)] italic leading-[1.02]">
               still building.

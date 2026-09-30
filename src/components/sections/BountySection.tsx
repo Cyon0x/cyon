@@ -21,7 +21,7 @@ export function BountySection() {
           <Reveal className="flex flex-wrap items-center gap-x-4 gap-y-3">
             <span className="flex items-center gap-3">
               <span aria-hidden className="h-4 w-1.5 shrink-0 bg-electric sm:h-5" />
-              <span className="mono text-[length:clamp(1.05rem,1.4vw+0.72rem,1.75rem)] font-bold uppercase leading-none tracking-[0.12em] text-electric">
+              <span className="mono text-[length:clamp(1.37rem,1.82vw+0.94rem,2.28rem)] font-bold uppercase leading-none tracking-[0.12em] text-electric">
                 BOUNTY WON
               </span>
             </span>
