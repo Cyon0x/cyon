@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { identity, links } from "@/data/site";
+import { availability, identity, links } from "@/data/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 import { useCopy } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 import {
@@ -77,13 +78,21 @@ export function ContactSection() {
   const current = intents.find((intent) => intent.id === active) ?? intents[0];
 
   const rows = [
-    { key: "x", label: links.x.label, value: links.x.handle, href: links.x.href, Icon: XIcon },
+    {
+      key: "x",
+      label: links.x.label,
+      value: links.x.handle,
+      href: links.x.href,
+      Icon: XIcon,
+      emphasis: false,
+    },
     {
       key: "email",
       label: links.email.label,
       value: links.email.handle,
       href: links.email.href,
       Icon: MailIcon,
+      emphasis: true,
     },
     {
       key: "github",
@@ -91,6 +100,7 @@ export function ContactSection() {
       value: links.github.handle,
       href: links.github.href,
       Icon: GitHubIcon,
+      emphasis: false,
     },
     {
       key: "telegram",
@@ -98,6 +108,7 @@ export function ContactSection() {
       value: links.telegram.handle,
       href: links.telegram.href,
       Icon: TelegramIcon,
+      emphasis: false,
     },
     {
       key: "discord",
@@ -105,6 +116,7 @@ export function ContactSection() {
       value: links.discord.handle,
       href: null,
       Icon: DiscordIcon,
+      emphasis: false,
     },
   ] as const;
 
@@ -112,7 +124,7 @@ export function ContactSection() {
     <section id="contact" className="relative z-10 border-b border-line py-[clamp(4.5rem,11vh,9rem)]">
       <div className="shell">
         <SectionHeading
-          index="11"
+          index="12"
           kicker="CONTACT"
           title={
             <>
@@ -122,6 +134,34 @@ export function ContactSection() {
           }
           lead="If you have a product, an ecosystem, a community or a strange idea that needs someone willing to get into the work — pick the closest door."
         />
+
+        {/* Conversion band: what I am actually available to do, stated as engagement types. */}
+        <Reveal delay={60}>
+          <div className="panel mt-12">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-3">
+              <span className="label !text-ink">AVAILABLE FOR</span>
+              <span className="label !text-signal">{identity.status}</span>
+            </div>
+            <div className="grid grid-cols-1 gap-x-8 gap-y-6 px-5 py-5 sm:grid-cols-3">
+              {availability.map((group) => (
+                <div key={group.group}>
+                  <p className="label !text-[9px] !text-signal">{group.group}</p>
+                  <ul className="mt-3 space-y-1.5">
+                    {group.items.map((item) => (
+                      <li key={item} className="flex items-baseline gap-3">
+                        <span
+                          aria-hidden
+                          className="h-1 w-1 shrink-0 rounded-full bg-signal/70"
+                        />
+                        <span className="text-[0.92rem] text-ink-2">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
 
         <div className="mt-14 grid grid-cols-12 gap-y-10 lg:gap-x-12">
           {/* doors */}
@@ -220,7 +260,7 @@ export function ContactSection() {
                 </div>
 
                 <ul className="mt-4 grid grid-cols-1 gap-x-8 sm:grid-cols-2">
-                  {rows.map(({ key, label, value, href, Icon }) => (
+                  {rows.map(({ key, label, value, href, Icon, emphasis }) => (
                     <li key={key} className="border-b border-line">
                       {href ? (
                         <a
@@ -231,8 +271,22 @@ export function ContactSection() {
                           className="group flex items-center gap-3 py-3"
                         >
                           <Icon width={14} height={14} className="shrink-0 text-ink-3 transition-colors group-hover:text-signal" />
-                          <span className="label !text-[9px] w-16 shrink-0">{label}</span>
-                          <span className="mono truncate text-[11px] text-ink-2 transition-colors group-hover:text-ink">
+                          <span
+                            className={cn(
+                              "label !text-[9px] w-16 shrink-0",
+                              emphasis ? "!text-signal" : "!text-ink-3",
+                            )}
+                          >
+                            {label}
+                          </span>
+                          <span
+                            className={cn(
+                              "mono truncate transition-colors group-hover:text-ink",
+                              emphasis
+                                ? "text-[14px] font-semibold text-ink"
+                                : "text-[11px] text-ink-2",
+                            )}
+                          >
                             {value}
                           </span>
                           <ArrowUpRight

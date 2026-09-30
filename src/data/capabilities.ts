@@ -17,11 +17,16 @@ export const capabilities: CapabilityGroup[] = [
       "Next.js",
       "TypeScript",
       "JavaScript",
+      "Tailwind CSS",
       "Web3 frontend architecture",
       "Wallet connection flows",
       "EVM integration",
       "Smart contract interaction",
       "Solidity experimentation",
+      "USDC / stablecoin payments",
+      "Vercel",
+      "GitHub",
+      "AI-assisted development",
     ],
   },
   {
@@ -68,4 +73,15 @@ export const capabilities: CapabilityGroup[] = [
       "Discord / Telegram / WhatsApp",
     ],
   },
+];
+
+/**
+ * The tools and surfaces behind the work, stated once. No proficiency bars —
+ * the builds and the repos are the evidence.
+ */
+export const stack: { group: string; items: string[] }[] = [
+  { group: "FRONTEND", items: ["React", "Next.js", "TypeScript", "Tailwind", "Figma"] },
+  { group: "WEB3", items: ["EVM", "Wallet integrations", "Smart contracts", "USDC / payments"] },
+  { group: "CHAINS", items: ["Arc", "Redbelly", "Circle USDC", "Plume", "Monad", "Union"] },
+  { group: "SHIP", items: ["GitHub", "Vercel", "AI-assisted development"] },
 ];

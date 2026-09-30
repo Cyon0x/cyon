@@ -59,7 +59,7 @@ export function NetworkSection() {
               <span className="serif italic"> logo wall</span>
             </>
           }
-          lead="Thirteen ecosystems, and a different job in most of them. Pick a node or filter by what the work actually was."
+          lead="Thirteen ecosystems, and a different job in most of them. Pick a node for the role, the work and the proof — or filter by what the work actually was."
         />
 
         {/* Category rail */}
@@ -303,7 +303,23 @@ export function NetworkSection() {
                   {activeCategory ? activeCategory.note : node.summary}
                 </p>
 
-                {!activeCategory ? (
+                {!activeCategory && node.ledger?.length ? (
+                  <div className="mt-6 border-t border-line pt-5">
+                    <p className="label">ROLE → WORK → PROOF</p>
+                    <ul className="mt-4 space-y-4">
+                      {node.ledger.map((entry) => (
+                        <li key={entry.role} className="border-l border-signal/50 pl-4">
+                          <p className="label !text-[9px] !text-signal">{entry.role}</p>
+                          <p className="mt-2 text-[0.9rem] text-ink-2">{entry.did}</p>
+                          <p className="mt-2 text-[0.85rem] text-ink-3">
+                            <span className="label !text-[9px]">PROOF · </span>
+                            {entry.proof}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : !activeCategory ? (
                   <ul className="mt-6 space-y-2.5 border-t border-line pt-5">
                     {node.facts.map((fact) => (
                       <li key={fact} className="flex items-baseline gap-3">

@@ -1,4 +1,4 @@
-import { identity } from "@/data/site";
+import { identity, positions } from "@/data/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -38,15 +38,17 @@ export function IdentitySection() {
           <Reveal delay={80}>
             <div className="mt-9 space-y-5 text-ink-2">
               <p>
-                I am a Web3 builder and growth operator. Four years around DeFi, infrastructure,
-                privacy, gaming, payments and ecosystems that were still figuring out what they
-                wanted to be. I have worked as builder, contributor, ambassador, community and
-                growth — usually more than one of those at the same time.
+                I am a Web3 builder and ecosystem operator. Four years around DeFi,
+                infrastructure, privacy, gaming, payments and ecosystems that were still figuring
+                out what they wanted to be. I have worked as builder, contributor, ambassador,
+                community and growth — usually more than one of those at the same time.
               </p>
               <p>
-                I am not trying to pass for a senior engineer. What I am is someone who understands
-                the technical side well enough to build on it, and can then explain it, grow a
-                community around it, and put it in front of people who will use it.
+                I build the frontend myself: React, Next.js, TypeScript and Tailwind, wired to EVM
+                chains, wallet connection flows and real transaction states. I am not trying to pass
+                for a protocol engineer. What I am is someone who can take a product from an idea to
+                a deployed interface, then explain it, grow a community around it, and put it in
+                front of the people who will use it.
               </p>
             </div>
           </Reveal>
@@ -110,6 +112,36 @@ export function IdentitySection() {
             </p>
           </Reveal>
         </div>
+
+        {/* The same work, in the words different teams use for it. */}
+        <Reveal delay={80} className="col-span-12 mt-14">
+          <div className="flex items-center gap-4 border-b border-line pb-4">
+            <span className="label !text-ink">ALSO DESCRIBED AS</span>
+            <span className="hair flex-1" />
+            <span className="label hidden sm:inline">ONE PERSON, FOUR JOBS</span>
+          </div>
+
+          <ul className="mt-5 grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
+            {positions.map((position) => (
+              <li
+                key={position.label}
+                className="group border-b border-line py-3.5"
+                title={position.note}
+              >
+                <span className="flex items-baseline gap-3">
+                  <span
+                    aria-hidden
+                    className="h-1 w-1 shrink-0 rounded-full bg-signal/70 transition-colors group-hover:bg-signal"
+                  />
+                  <span className="mono text-[11px] uppercase tracking-[0.14em] text-ink-2 transition-colors group-hover:text-ink">
+                    {position.label}
+                  </span>
+                </span>
+                <span className="mt-1.5 block pl-4 text-[0.88rem] text-ink-3">{position.note}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

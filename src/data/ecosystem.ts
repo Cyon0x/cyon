@@ -23,6 +23,8 @@ export type EcosystemNode = {
   categories: CategoryId[];
   summary: string;
   facts: string[];
+  /** Role → what I did → proof, for the ecosystems where the work is documented. */
+  ledger?: { role: string; did: string; proof: string }[];
   /** Optional outbound links that are real. */
   links?: { label: string; href: string }[];
 };
@@ -48,10 +50,28 @@ export const ecosystemNodes: EcosystemNode[] = [
       "The ecosystem I have shipped the most inside. A compliant L1 built for real world assets, and a community that needed tooling.",
     facts: [
       "Redbelly DAO interface \u2014 won a Redbelly bounty",
+      "Redbelly community showcase \u2014 website redesign that won a Redbelly bounty",
       "VAULT 01 Genesis mint page on Redbelly Mainnet",
       "KYC and Wallet Activation guide",
       "TrustPass \u2014 identity-gated ERC-20 on Redbelly Testnet",
       "Ongoing content, community and DAO contribution",
+    ],
+    ledger: [
+      {
+        role: "CONTRIBUTOR \u00b7 DAO ECOSYSTEM",
+        did: "Designed and built the DAO interface, redesigned the community showcase, wrote the KYC and wallet activation guide, shipped TrustPass and VAULT 01.",
+        proof:
+          "Redbelly DAO and the community showcase redesign both won Redbelly bounties; the DAO build was posted by @RedbellyNetwork.",
+      },
+      {
+        role: "CONTENT \u00b7 COMMUNITY",
+        did: "Educational content, memes, campaign assets, community showcases and task board campaigns.",
+        proof: "The 10-week contribution broken down in Proof of Work.",
+      },
+    ],
+    links: [
+      { label: "Redbelly DAO \u2014 live", href: "https://redbelly-dao.vercel.app/" },
+      { label: "VAULT 01 \u2014 live", href: "https://redbelly-nft-mint.vercel.app/" },
     ],
   },
   {
@@ -67,6 +87,22 @@ export const ecosystemNodes: EcosystemNode[] = [
       "InfluenceFi \u2014 creator escrow with 48h auto-release",
       "ARC builders IRL, Benin City",
     ],
+    ledger: [
+      {
+        role: "BUILDER",
+        did: "Built FinFlow, a USDC payments product, and InfluenceFi, creator escrow with a 48 hour auto-release fallback.",
+        proof: "Both live on Arc with Circle USDC, with source on GitHub.",
+      },
+      {
+        role: "COMMUNITY \u00b7 IRL",
+        did: "Organised Arc builder gatherings, hosted the room, and made content around USDC and payments.",
+        proof: "ARC builders IRL, Benin City \u2014 IRL / 001.",
+      },
+    ],
+    links: [
+      { label: "FinFlow \u2014 live", href: "https://finflow-ebon-iota.vercel.app/" },
+      { label: "InfluenceFi \u2014 live", href: "https://influence-orpin.vercel.app/" },
+    ],
   },
   {
     id: "circle",
@@ -80,6 +116,13 @@ export const ecosystemNodes: EcosystemNode[] = [
       "Escrow and payout flows built on Circle USDC",
       "Live NGN, KES and GHS conversion surfaced in the dashboard",
     ],
+    ledger: [
+      {
+        role: "BUILDER",
+        did: "Used USDC as the settlement unit in FinFlow and InfluenceFi, including escrow, batch payouts and payroll runs.",
+        proof: "Two live products settling in USDC on Arc, with live NGN, KES and GHS rates.",
+      },
+    ],
   },
   {
     id: "plume",
@@ -89,6 +132,18 @@ export const ecosystemNodes: EcosystemNode[] = [
     categories: ["COMMUNITY", "IRL", "CONTENT", "AMBASSADOR"],
     summary: "Community and onboarding work around a network built for real world assets.",
     facts: ["Community onboarding", "Content", "IRL activation"],
+    ledger: [
+      {
+        role: "AMBASSADOR \u00b7 GOON CIRCLE",
+        did: "Ecosystem awareness, community onboarding, educational content and behind-the-scenes feedback beyond standard ambassador activity.",
+        proof: "Plume ecosystem team feedback quoted in What people say.",
+      },
+      {
+        role: "IRL",
+        did: "Hosted an in-person session explaining the ecosystem to people who had never seen an RWA token.",
+        proof: "IRL / 002 \u2014 Benin City.",
+      },
+    ],
   },
   {
     id: "monad",
@@ -98,6 +153,13 @@ export const ecosystemNodes: EcosystemNode[] = [
     categories: ["COMMUNITY", "GROWTH", "CONTENT"],
     summary: "Community and growth work while the ecosystem was still mostly a promise.",
     facts: ["Community", "Growth", "Content"],
+    ledger: [
+      {
+        role: "COMMUNITY \u00b7 GROWTH \u00b7 TESTING",
+        did: "Community and growth work, plus hands-on product testing of the testnet flow.",
+        proof: "Testnet edge cases surfaced that internal QA had not caught (see What people say).",
+      },
+    ],
   },
   {
     id: "union",
@@ -107,6 +169,13 @@ export const ecosystemNodes: EcosystemNode[] = [
     categories: ["COMMUNITY", "IRL", "AMBASSADOR"],
     summary: "Interoperability is a hard sell in a room. It is a much easier sell in person.",
     facts: ["Community", "IRL activation", "Hosted an IRL around the ecosystem"],
+    ledger: [
+      {
+        role: "COMMUNITY \u00b7 IRL",
+        did: "Community work and hosted an in-person session explaining interoperability without a single bridge diagram.",
+        proof: "IRL / 003 \u2014 Benin City; campaign feedback quoted in What people say.",
+      },
+    ],
   },
   {
     id: "xora",
@@ -116,6 +185,13 @@ export const ecosystemNodes: EcosystemNode[] = [
     categories: ["COMMUNITY", "GROWTH", "AMBASSADOR"],
     summary: "Onboarding work that turned into a number I can point at.",
     facts: ["1,000+ members onboarded", "Onboarding flow + support", "Growth"],
+    ledger: [
+      {
+        role: "COMMUNITY \u00b7 GROWTH",
+        did: "Built and ran the onboarding path and day-to-day support inside a large private community channel.",
+        proof: "1,000+ members onboarded.",
+      },
+    ],
   },
   {
     id: "swisstronik",

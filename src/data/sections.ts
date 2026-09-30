@@ -11,6 +11,7 @@ export const sections: SectionRef[] = [
   { id: "current", index: "07", label: "BUILDING NOW" },
   { id: "capability", index: "08", label: "CAPABILITY" },
   { id: "irl", index: "09", label: "IRL" },
-  { id: "process", index: "10", label: "HOW I WORK" },
-  { id: "contact", index: "11", label: "CONTACT" },
+  { id: "voices", index: "10", label: "WHAT PEOPLE SAY" },
+  { id: "process", index: "11", label: "HOW I WORK" },
+  { id: "contact", index: "12", label: "CONTACT" },
 ];

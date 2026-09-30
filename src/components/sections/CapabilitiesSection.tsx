@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { capabilities } from "@/data/capabilities";
+import { capabilities, stack } from "@/data/capabilities";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
@@ -94,15 +94,35 @@ export function CapabilitiesSection() {
               ))}
             </ul>
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
-              <span className="label">TOOLING</span>
-              <span className="mono text-[11px] text-ink-3">
-                NEXT.JS · REACT · TYPESCRIPT · TAILWIND · VIEM / WAGMI · SOLIDITY (EXPERIMENTATION) ·
-                FIGMA · GIT
-              </span>
-            </div>
           </div>
         </div>
+
+        {/* The tools, stated once and grouped, so the technical side is not buried. */}
+        <Reveal delay={80} className="mt-14 border-t border-line pt-6">
+          <div className="flex items-center gap-4">
+            <span className="label !text-ink">STACK</span>
+            <span className="hair flex-1" />
+            <span className="label hidden sm:inline">WHAT THE BUILDS ARE MADE OF</span>
+          </div>
+
+          <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
+            {stack.map((group) => (
+              <div key={group.group} className="border-t border-line pt-3.5">
+                <dt className="label !text-[9px] !text-signal">{group.group}</dt>
+                <dd className="mt-3 flex flex-wrap gap-x-3 gap-y-2">
+                  {group.items.map((item) => (
+                    <span
+                      key={item}
+                      className="mono text-[10.5px] uppercase tracking-[0.1em] text-ink-3 transition-colors hover:text-ink-2"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
     </section>
   );

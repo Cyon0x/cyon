@@ -1,4 +1,4 @@
-import { links } from "@/data/site";
+import { identity, links } from "@/data/site";
 import { ticker } from "@/data/code";
 import { Marquee } from "@/components/ui/Marquee";
 import { Reveal } from "@/components/ui/Reveal";
@@ -24,8 +24,11 @@ export function Hero() {
           {/* ---------------------------------------------------------------- */}
           <div className="order-1 col-span-12 lg:col-span-7">
             <Reveal>
-              <p className="label !text-[10px] !text-ink-2">
-                WEB3 BUILDER / GROWTH / COMMUNITY / PRODUCT
+              <p className="label !text-[10px] !text-ink">
+                {identity.role}
+              </p>
+              <p className="label mt-2 !text-[9px] !text-ink-3">
+                {identity.disciplines.join(" \u00b7 ")}
               </p>
             </Reveal>
 
@@ -63,11 +66,14 @@ export function Hero() {
             </h1>
 
             <Reveal delay={280}>
-              <p className="mt-7 max-w-[56ch] text-ink-2">
-                I build products, grow ecosystems and ship things people can actually use. 4+ years
-                across DeFi, infrastructure, privacy, gaming and payments — usually in ecosystems
-                where the documentation is still being written. I work between the technical side
-                and the human side, which mostly means being close to the actual work.
+              <p className="mt-7 max-w-[56ch] text-[1.05rem] text-ink-2">
+                {identity.statement}
+              </p>
+              <p className="mt-4 max-w-[56ch] text-[0.95rem] text-ink-3">
+                4+ years across DeFi, infrastructure, privacy, gaming and payments — usually in
+                ecosystems where the documentation is still being written. I work between the
+                technical side and the human side, which mostly means being close to the actual
+                work.
               </p>
             </Reveal>
 

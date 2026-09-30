@@ -7,6 +7,7 @@ import { BountySection } from "@/components/sections/BountySection";
 import { CurrentBuildsSection } from "@/components/sections/CurrentBuildsSection";
 import { CapabilitiesSection } from "@/components/sections/CapabilitiesSection";
 import { IrlSection } from "@/components/sections/IrlSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
@@ -22,6 +23,7 @@ export default function Home() {
       <CurrentBuildsSection />
       <CapabilitiesSection />
       <IrlSection />
+      <TestimonialsSection />
       <ProcessSection />
       <ContactSection />
     </>

@@ -2,6 +2,7 @@ import { identity, links } from "@/data/site";
 import { sections } from "@/data/sections";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { LocalClock } from "@/components/ui/LocalClock";
+import { cn } from "@/lib/utils";
 import {
   ArrowUpRight,
   GitHubIcon,
@@ -11,10 +12,10 @@ import {
 } from "@/components/ui/Icons";
 
 const socials = [
-  { key: "x", href: links.x.href, handle: links.x.handle, Icon: XIcon },
-  { key: "github", href: links.github.href, handle: links.github.handle, Icon: GitHubIcon },
-  { key: "email", href: links.email.href, handle: links.email.handle, Icon: MailIcon },
-  { key: "telegram", href: links.telegram.href, handle: links.telegram.handle, Icon: TelegramIcon },
+  { key: "x", href: links.x.href, handle: links.x.handle, Icon: XIcon, emphasis: false },
+  { key: "github", href: links.github.href, handle: links.github.handle, Icon: GitHubIcon, emphasis: false },
+  { key: "email", href: links.email.href, handle: links.email.handle, Icon: MailIcon, emphasis: true },
+  { key: "telegram", href: links.telegram.href, handle: links.telegram.handle, Icon: TelegramIcon, emphasis: false },
 ];
 
 export function SiteFooter() {
@@ -32,10 +33,11 @@ export function SiteFooter() {
             <p className="serif mt-7 text-[length:var(--text-h2)] italic leading-[1.02]">
               still building.
             </p>
-            <p className="label mt-4">WEB3 / PRODUCT / GROWTH / COMMUNITY</p>
+            <p className="label mt-4 !text-ink-2">{identity.role}</p>
+            <p className="label mt-2">{identity.disciplines.join(" \u00b7 ")}</p>
             <p className="mt-6 max-w-[42ch] text-[0.92rem] text-ink-3">
-              Open to product, growth and ecosystem work. Interested in anything involving
-              stablecoins, payments and people who are new to all of this.
+              Open to frontend, product, growth, community and IRL work. Interested in anything
+              involving stablecoins, payments and people who are new to all of this.
             </p>
           </div>
 
@@ -64,7 +66,7 @@ export function SiteFooter() {
           <div className="col-span-6 lg:col-span-3">
             <p className="label mb-4">ELSEWHERE</p>
             <ul>
-              {socials.map(({ key, href, handle, Icon }) => (
+              {socials.map(({ key, href, handle, Icon, emphasis }) => (
                 <li key={key} className="border-b border-line">
                   <a
                     href={href}
@@ -74,7 +76,14 @@ export function SiteFooter() {
                     className="group flex items-center gap-3 py-2.5"
                   >
                     <Icon width={13} height={13} className="shrink-0 text-ink-3 transition-colors group-hover:text-signal" />
-                    <span className="mono truncate text-[11px] text-ink-2 transition-colors group-hover:text-ink">
+                    <span
+                      className={cn(
+                        "mono truncate transition-colors group-hover:text-ink",
+                        emphasis
+                          ? "text-[13px] font-semibold text-ink"
+                          : "text-[11px] text-ink-2",
+                      )}
+                    >
                       {handle}
                     </span>
                     <ArrowUpRight

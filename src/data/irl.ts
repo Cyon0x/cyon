@@ -9,10 +9,20 @@ export type IrlStop = {
   place: string;
   year: string;
   role: string;
+  /** What I actually did for this room. Honest, per event. */
+  verbs: string[];
   tags: string[];
   note: string;
   photos: IrlPhoto[];
 };
+
+/** The four verbs, defined once so every event is labelled the same way. */
+export const irlVerbs: { verb: string; note: string }[] = [
+  { verb: "HOSTED", note: "Ran the room and the run of show" },
+  { verb: "PLANNED", note: "Concept, format, venue, guest list" },
+  { verb: "ORGANISED", note: "Partners, logistics, follow-up" },
+  { verb: "ACTIVATED", note: "Onboarding and first wallets in the room" },
+];
 
 export const irlLeadPhoto: IrlPhoto = {
   src: "/irl/04-group.webp",
@@ -25,6 +35,9 @@ export type IrlEventPhoto = IrlPhoto & {
   /** Frame shape — the band is composed, not a uniform grid of tiles. */
   frame: "lead" | "wide" | "tall";
 };
+
+/** Every frame in the hosted-event archive was a room I hosted, planned and organised. */
+export const irlArchiveVerbs = ["HOSTED", "PLANNED", "ORGANISED"];
 
 /** One line per verb, so the section states the job plainly next to the proof. */
 export const irlRoles: { verb: string; note: string }[] = [
@@ -81,6 +94,7 @@ export const irlStops: IrlStop[] = [
     place: "BENIN CITY",
     year: "2025",
     role: "HOST",
+    verbs: ["HOSTED", "ORGANISED"],
     tags: ["COMMUNITY", "BUILDERS", "WEB3"],
     note:
       "A room of builders in Benin City talking about stablecoins, payments and what is actually worth building on Arc.",
@@ -101,6 +115,7 @@ export const irlStops: IrlStop[] = [
     place: "BENIN CITY",
     year: "2025",
     role: "HOST",
+    verbs: ["HOSTED", "ACTIVATED"],
     tags: ["COMMUNITY", "ONBOARDING"],
     note: "Onboarding people who had heard the word RWA and never seen one.",
     photos: [
@@ -116,6 +131,7 @@ export const irlStops: IrlStop[] = [
     place: "BENIN CITY",
     year: "2025",
     role: "HOST",
+    verbs: ["HOSTED", "PLANNED"],
     tags: ["COMMUNITY", "BUILDERS", "INTEROP"],
     note: "Interoperability explained without a single diagram of a bridge.",
     photos: [
@@ -131,6 +147,7 @@ export const irlStops: IrlStop[] = [
     place: "BENIN CITY",
     year: "2025",
     role: "HOST",
+    verbs: ["HOSTED", "ACTIVATED"],
     tags: ["COMMUNITY", "ONBOARDING"],
     note: "First wallets, first swaps, first questions.",
     photos: [
@@ -150,6 +167,7 @@ export const irlStops: IrlStop[] = [
     place: "YOUR ECOSYSTEM",
     year: "\u2014",
     role: "HOST",
+    verbs: [],
     tags: ["COMMUNITY", "IRL", "OPEN"],
     note:
       "If your ecosystem needs actual people in an actual room, this slot is the one I want to fill next.",

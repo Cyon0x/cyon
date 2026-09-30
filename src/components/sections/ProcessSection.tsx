@@ -34,7 +34,7 @@ export function ProcessSection() {
     <section id="process" className="relative z-10 border-b border-line py-[clamp(4.5rem,11vh,9rem)]">
       <div className="shell">
         <SectionHeading
-          index="10"
+          index="11"
           kicker="METHOD"
           title={
             <>

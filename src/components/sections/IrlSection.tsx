@@ -3,10 +3,12 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
+  irlArchiveVerbs,
   irlEventArchive,
   irlLeadPhoto,
   irlRoles,
   irlStops,
+  irlVerbs,
   type IrlEventPhoto,
   type IrlPhoto,
 } from "@/data/irl";
@@ -217,6 +219,21 @@ export function IrlSection() {
           ))}
         </div>
 
+        {/* The verbs, defined once, so every room says what I actually did in it. */}
+        <Reveal delay={60}>
+          <dl className="mt-10 grid grid-cols-1 gap-x-8 gap-y-4 border-t border-line pt-6 sm:grid-cols-2 lg:grid-cols-4">
+            {irlVerbs.map((entry) => (
+              <div key={entry.verb}>
+                <dt className="label !text-[10px] !text-signal">{entry.verb}</dt>
+                <dd className="mt-1.5 text-[0.85rem] text-ink-3">{entry.note}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="label mt-4 !text-[9px]">
+            HOSTED-EVENT ARCHIVE · {irlArchiveVerbs.join(" / ")}
+          </p>
+        </Reveal>
+
         <Reveal delay={60}>
           <div className="mt-12 flex items-center justify-between gap-6 border-b border-line pb-4">
             <span className="label">ROUTE / 04 COMPLETED · 01 OPEN</span>
@@ -279,6 +296,19 @@ export function IrlSection() {
                 <span className="label !text-[9px]">{stop.code}</span>
                 <span className="label !text-[9px]">{stop.year}</span>
               </div>
+
+              {stop.verbs.length ? (
+                <ul className="mt-4 flex flex-wrap gap-1.5">
+                  {stop.verbs.map((verb) => (
+                    <li
+                      key={verb}
+                      className="mono border border-signal/40 px-2 py-1 text-[9px] uppercase tracking-[0.14em] text-signal"
+                    >
+                      {verb}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
 
               <StopPhotos photos={stop.photos} />
 
