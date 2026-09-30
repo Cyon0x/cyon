@@ -18,8 +18,13 @@ export function BountySection() {
     <section id="bounty" className="relative z-10 border-b border-line py-[clamp(4.5rem,11vh,9rem)]">
       <div className="shell grid grid-cols-12 gap-y-12 lg:gap-x-12">
         <div className="col-span-12 lg:col-span-7">
-          <Reveal className="flex items-center gap-4">
-            <span className="label label-ink">BOUNTY WON</span>
+          <Reveal className="flex flex-wrap items-center gap-x-4 gap-y-3">
+            <span className="flex items-center gap-3">
+              <span aria-hidden className="h-4 w-1.5 shrink-0 bg-electric sm:h-5" />
+              <span className="mono text-[length:clamp(1.05rem,1.4vw+0.72rem,1.75rem)] font-bold uppercase leading-none tracking-[0.12em] text-electric">
+                BOUNTY WON
+              </span>
+            </span>
             <span className="hair flex-1" />
             <span className="label">{bounty.code}</span>
           </Reveal>
