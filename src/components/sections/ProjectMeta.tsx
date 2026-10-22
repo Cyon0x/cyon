@@ -1,5 +1,5 @@
 import { PROJECT_COUNT, type Project } from "@/data/projects";
-import { ArrowUpRight, GitHubIcon } from "@/components/ui/Icons";
+import { ArrowUpRight, GitHubIcon, XIcon } from "@/components/ui/Icons";
 import { cn } from "@/lib/utils";
 
 export function ProjectIndex({ project, className }: { project: Project; className?: string }) {
@@ -106,6 +106,21 @@ export function ProjectLinks({ project }: { project: Project }) {
           <span>
             <GitHubIcon width={13} height={13} />
             SOURCE
+          </span>
+        </a>
+      ) : null}
+      {project.x ? (
+        <a
+          href={project.x}
+          target="_blank"
+          rel="noreferrer"
+          className="btn btn-ghost"
+          data-cursor="OPEN"
+          aria-label={`${project.name} on X`}
+        >
+          <span>
+            <XIcon width={13} height={13} />
+            X
           </span>
         </a>
       ) : null}
